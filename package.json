@@ -13,20 +13,21 @@
     "url": "https://github.com/GitHubGW/MyYoutube/issues"
   },
   "homepage": "https://github.com/GitHubGW/MyYoutube#readme",
-  "scripts": {
-    "start": "nodemon --exec babel-node init.js --delay 2"
-  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "helmet": "^4.4.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7",
     "@babel/core": "^7.13.10",
     "@babel/node": "^7.13.10",
     "@babel/preset-env": "^7.13.10"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node init.js --delay 2"
   }
 }
