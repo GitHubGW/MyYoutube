@@ -7,7 +7,7 @@ const SEARCH = "/search";
 
 // Users
 const USERS = "/users";
-const USER_DETAIL = "/:id/detail";
+const USER_DETAIL = "/:id/detail"; // 오류나면 나중에 뒤에 /detail빼기
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
 
