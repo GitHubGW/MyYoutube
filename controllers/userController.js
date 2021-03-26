@@ -6,9 +6,16 @@ export const postJoin = (req, res) => {
   const {
     body: { name, email, password, password2 },
   } = req;
-  console.log(req.body);
+  // console.log(req.body);
+  if (password !== password2) {
+    res.status(400);
+  } else {
+    res.redirect(routes.home);
+  }
+
   return res.render("join", { pageTitle: "Join" });
 };
+
 export const login = (req, res) => res.render("login", { pageTitle: "Login" });
 export const logout = (req, res) => res.render("logout", { pageTitle: "Logout" });
 
