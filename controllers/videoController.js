@@ -1,4 +1,5 @@
 import { videos } from "../db";
+import routes from "../routes";
 
 // Global Controller
 export const home = (req, res) => {
@@ -14,7 +15,14 @@ export const search = (req, res) => {
 };
 
 // Video Controller
-export const upload = (req, res) => res.render("upload", { pageTitle: "Upload" });
+export const getUpload = (req, res) => res.render("upload", { pageTitle: "Upload" });
+export const postUpload = (req, res) => {
+  // console.log(req.body);
+  const { 
+    body: {file, title, description} 
+  } = req;
+  res.redirect(routes.videoDetail(100));
+}
 export const videoDetail = (req, res) => res.render("videoDetail", { pageTitle: "VideoDetail" });
 export const editVideo = (req, res) => res.render("editVideo", { pageTitle: "EditVideo" });
 export const deleteVideo = (req, res) => res.render("deleteVideo", { pageTitle: "DeleteVideo" });

@@ -1,3 +1,5 @@
+import routes from "../routes";
+
 // Global Controller
 export const getJoin = (req, res) => {
   return res.render("join", { pageTitle: "Join" });
@@ -9,15 +11,16 @@ export const postJoin = (req, res) => {
   // console.log(req.body);
   if (password !== password2) {
     res.status(400);
+    return res.render("join", { pageTitle: "Join" });
   } else {
-    res.redirect(routes.home);
+    return res.redirect(routes.home);
   }
-
-  return res.render("join", { pageTitle: "Join" });
 };
 
-export const login = (req, res) => res.render("login", { pageTitle: "Login" });
-export const logout = (req, res) => res.render("logout", { pageTitle: "Logout" });
+export const getLogin = (req, res) => res.render("login", { pageTitle: "Login" });
+export const postLogin = (req, res) => res.redirect(routes.home);
+
+export const logout = (req, res) => res.redirect(routes.home);
 
 // User Controller
 export const userDetail = (req, res) => res.render("userDetail", { pageTitle: "UserDetail" });

@@ -7,7 +7,7 @@ const SEARCH = "/search";
 
 // Users
 const USERS = "/users";
-const USER_DETAIL = "/:id/detail"; // 오류나면 나중에 뒤에 /detail빼기
+const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
 
@@ -25,12 +25,24 @@ const routes = {
   logout: LOGOUT,
   search: SEARCH,
   users: USERS,
-  userDetail: USER_DETAIL,
+  userDetail: (id)=>{
+    if(id){
+      return `users/${id}`;
+    }else{
+      return USER_DETAIL;
+    }
+  },
   editProfile: EDIT_PROFILE,
   changePassword: CHANGE_PASSWORD,
   videos: VIDEOS,
   upload: UPLOAD,
-  videoDetail: VIDEO_DETAIL,
+  videoDetail: (id)=>{
+    if(id){
+      return `videos/${id}`;
+    }else{
+      return VIDEO_DETAIL;
+    }
+  },
   editVideo: EDIT_VIDEO,
   deleteVideo: DELETE_VIDEO,
 };
