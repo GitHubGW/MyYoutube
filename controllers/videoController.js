@@ -1,8 +1,16 @@
 import routes from "../routes";
+import Video from "../models/Video";
 
 // Global Controller
-export const home = (req, res) => {
-  return res.render("home", { pageTitle: "Home", videos });
+export const home = async (req, res) => {
+  try{
+    const videos = await Video.find({});
+    // throw Error("Error!!!");
+    return res.render("home", { pageTitle: "Home", videos });
+  }catch(error){
+    console.log(error);
+    return res.render("home", { pageTitle: "Home", videos: [] });
+  }
 };
 export const search = (req, res) => {
   console.log(req.query);
@@ -15,12 +23,20 @@ export const search = (req, res) => {
 
 // Video Controller
 export const getUpload = (req, res) => res.render("upload", { pageTitle: "Upload" });
-export const postUpload = (req, res) => {
+export const postUpload = async (req, res) => {
   // console.log(req.body);
   const { 
-    body: {file, title, description} 
+    body: { title, description },
+    file: { path }
   } = req;
-  res.redirect(routes.videoDetail(100));
+
+  const newVideo = await Video.create({
+    fileUrl: path,
+    title,
+    description
+  });
+  console.log(newVideo);
+  return res.redirect(routes.videoDetail(newVideo.id));
 }
 export const videoDetail = (req, res) => res.render("videoDetail", { pageTitle: "VideoDetail" });
 export const editVideo = (req, res) => res.render("editVideo", { pageTitle: "EditVideo" });
