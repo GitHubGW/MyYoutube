@@ -8,9 +8,11 @@ const globalRouter = express.Router();
 globalRouter.get(routes.home, home);
 globalRouter.get(routes.search, search);
 
+// Join
 globalRouter.get(routes.join, getJoin);
 globalRouter.post(routes.join, postJoin);
 
+// Login
 globalRouter.get(routes.login, getLogin);
 globalRouter.post(routes.login, postLogin);
 

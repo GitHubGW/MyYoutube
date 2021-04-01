@@ -22,8 +22,7 @@ app.use((req, res, next) => {
   res.setHeader("Content-Security-Policy", "script-src 'self' https://archive.org");
   return next();
 });
-
-app.use("/uploads", express.static("uploads"))
+app.use("/uploads", express.static("uploads"));
 
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);

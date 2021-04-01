@@ -1,6 +1,6 @@
 import "./db";
-import app from "./app";
 import dotenv from "dotenv";
+import app from "./app";
 import Video from "./models/Video";
 import Comment from "./models/Comment";
 
