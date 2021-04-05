@@ -23,6 +23,7 @@ app.use((req, res, next) => {
   return next();
 });
 app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("static"));
 
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
