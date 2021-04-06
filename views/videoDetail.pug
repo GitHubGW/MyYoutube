@@ -3,11 +3,17 @@ extends layouts/main
 block content
   .video__player
     video(src=`/${video.fileUrl}`, controls) 
+
   .video__info
-    a(href=routes.editVideo(video._id)) Edit Video
+    a(href=routes.editVideo(video._id)) 
+      button Edit Video
     h5.video__title=video.title
-    span.video__views=video.views
     p.video__description=video.description
+    if video.views === 1
+      span.video__views 1 view
+    else 
+      span.video__views #{video.views} views
+
   .video__comment
     if video.comments.length === 0
       span.video__comment-number No Comment here!
