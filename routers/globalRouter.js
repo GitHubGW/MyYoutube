@@ -10,7 +10,7 @@ globalRouter.get(routes.search, search);
 
 // Join
 globalRouter.get(routes.join, getJoin);
-globalRouter.post(routes.join, postJoin);
+globalRouter.post(routes.join, postJoin, postLogin);
 
 // Login
 globalRouter.get(routes.login, getLogin);
