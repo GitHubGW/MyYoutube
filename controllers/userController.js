@@ -2,7 +2,7 @@ import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
 
-// Global Controller
+// Join Controllers
 export const getJoin = (req, res) => {
   return res.render("join", { pageTitle: "Join" });
 };
@@ -31,18 +31,28 @@ export const postJoin = async (req, res, next) => {
   }
 };
 
-// Login Controller
+// Login Controllers
 export const getLogin = (req, res) => res.render("login", { pageTitle: "Login" });
-
 
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
   successRedirect: routes.home
 });
 
-export const logout = (req, res) => res.redirect(routes.home);
+// GitHub Controllers
+export const githubLogin = passport.authenticate('github');
 
-// User Controller
+export const githubLoginCallback = (accessToken, refreshToken, profile, cb) => {
+  console.log(accessToken, refreshToken, profile, cb);
+}
+
+// Logout Controller
+export const logout = (req, res) => {
+  req.logout();
+  res.redirect(routes.home);
+}
+
+// User Controllers
 export const users = (req, res) => res.render("users", { pageTitle: "Users" });
 export const userDetail = (req, res) => res.render("userDetail", { pageTitle: "UserDetail" });
 export const editProfile = (req, res) => res.render("editProfile", { pageTitle: "EditProfile" });
