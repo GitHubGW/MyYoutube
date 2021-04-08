@@ -8,8 +8,7 @@ export const home = async (req, res) => {
       _id: -1,
     });
     // throw Error("Error!!!");
-
-    console.log(videos);
+    // console.log(videos);
     return res.render("home", { pageTitle: "Home", videos });
   } catch (error) {
     console.log(error);
