@@ -1,6 +1,6 @@
 import express from "express";
 import passport from "passport";
-import { getJoin, getLogin, postLogin, logout, postJoin, githubLogin, postGithubLogin } from "../controllers/userController";
+import { getJoin, getLogin, postLogin, logout, postJoin, githubLogin, postGithubLogin, getMe } from "../controllers/userController";
 import { home, search } from "../controllers/videoController";
 import { onlyPublic, onlyPrivate } from "../middlewares";
 import routes from "../routes";
@@ -19,6 +19,7 @@ globalRouter.get(routes.login, onlyPublic, getLogin);
 globalRouter.post(routes.login, onlyPublic, postLogin);
 
 globalRouter.get(routes.logout, logout);
+globalRouter.get(routes.me, getMe);
 
 // Github
 globalRouter.get(routes.github, githubLogin);

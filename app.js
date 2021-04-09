@@ -15,8 +15,6 @@ import "./passport";
 
 const app = express();
 
-console.log(process.env.COOKIE_SECRET);
-
 app.use(helmet({ contentSecurityPolicy: false }));
 app.set("view engine", "pug");
 app.set("views", "./views");
