@@ -21,4 +21,6 @@ block content
       span.video__comment-number 1 comment
     else 
       span.video__comment-number #{video.comments.length} comments
-
+  .video__author 
+    |Uploaded by
+    a(href=routes.userDetail(1))=video.creator.name
