@@ -22,11 +22,11 @@ export const search = async (req, res) => {
   // console.log(searchingBy);
 
   let videos = [];
-  try{
+  try {
     videos = await Video.find({
-      title: { $regex: searchingBy, $options: "i" }
+      title: { $regex: searchingBy, $options: "i" },
     });
-  }catch(error){
+  } catch (error) {
     console.log(error);
   }
   res.render("search", { pageTitle: "Search", searchingBy, videos });
@@ -45,7 +45,7 @@ export const postUpload = async (req, res) => {
     fileUrl: path,
     title,
     description,
-    creator: req.user.id
+    creator: req.user.id,
   });
   // console.log(newVideo);
 
@@ -80,12 +80,18 @@ export const getEditVideo = async (req, res) => {
   try {
     const video = await Video.findById(id);
     // console.log(video);
-    res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
+
+    if (video.creator !== req.user.id) {
+      throw Error();
+    } else {
+      res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
+    }
   } catch (error) {
     console.log(error);
     res.redirect(routes.home);
   }
 };
+
 export const postEditVideo = async (req, res) => {
   const {
     params: { id },
@@ -113,7 +119,12 @@ export const deleteVideo = async (req, res) => {
     params: { id },
   } = req;
   try {
-    await Video.findOneAndRemove({ _id: id });
+    const video = await Video.findById(id);
+    if (video.creator !== req.user.id) {
+      throw Error();
+    } else {
+      await Video.findOneAndRemove({ _id: id });
+    }
   } catch (error) {
     console.log(error);
   }
